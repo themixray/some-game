@@ -18,8 +18,7 @@ public class PlayerController : MonoBehaviour
     public float checkRadius = .1f;
     public Collider feet;
     public float walkTrigger;
-    public Vector3 wallOffset;
-    
+    public GameObject[] items;
 
 
     private Rigidbody rig;
@@ -28,6 +27,7 @@ public class PlayerController : MonoBehaviour
     private Quaternion startRotate;
     public bool runningOnWall = false;
     private WallControl wall = null;
+    private float wallProgress = 0;
 
     void Start()
     {
@@ -36,6 +36,7 @@ public class PlayerController : MonoBehaviour
         startPos = transform.position;
         startRotate = transform.rotation;
         speed = normalSpeed;
+        items = GameObject.FindGameObjectsWithTag("item");
     }
 
     // Update is called once per fram
@@ -52,12 +53,16 @@ public class PlayerController : MonoBehaviour
     {
         wall = w;
         runningOnWall = true;
+        wallProgress = 0;
+
         anim.SetBool("RunningOnWall", true);
         anim.SetBool("Walking", false);
-        transform.position = wall.start.position + wallOffset;
-        rig.useGravity = false;
+
+        transform.position = wall.start.position;
         transform.rotation = new Quaternion(0, 0, 0, 0);
 
+        rig.useGravity = false;
+        rig.velocity = new Vector3(0, 0, 0);
     }
 
     void Update()
@@ -117,18 +122,38 @@ public class PlayerController : MonoBehaviour
             }
             anim.SetBool("Walking", walking);
 
-
             if (transform.position.y < -5)
             {
                 transform.position = startPos;
                 transform.rotation = startRotate;
             }
+
+            if (Input.GetKeyDown("f"))
+            {
+                float ld = -1;
+                GameObject li = null;
+                foreach (GameObject i in items)
+                {
+                    if (i.activeSelf)
+                    {
+                        float d = Vector3.Distance(center.transform.position, i.transform.position);
+                        if (d < 5 && (ld > d || ld == -1))
+                        {
+                            ld = d;
+                            li = i;
+                        } 
+                    }
+                }
+
+                // moves to inventory
+                if (li != null) 
+                    li.SetActive(false);
+            }
         } else
         {
-            transform.position = Vector3.Lerp(transform.position, wall.end.position, wallspeed);
-            if (((int)transform.position.x) == ((int)wall.end.position.x) &&
-                ((int)transform.position.y) == ((int)wall.end.position.y) &&
-                ((int)transform.position.z) == ((int)wall.end.position.z))
+            transform.position = Vector3.Lerp(wall.start.position, wall.end.position, wallProgress);
+            wallProgress += wallspeed;
+            if (wallProgress >= 1)
             {
                 rig.useGravity = true;
                 runningOnWall = false;
