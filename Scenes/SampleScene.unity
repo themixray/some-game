@@ -467,6 +467,10 @@ PrefabInstance:
       value: Mug (3)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
       propertyPath: m_TagString
       value: item
       objectReference: {fileID: 0}
@@ -864,6 +868,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
       propertyPath: m_Name
       value: Mug
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
       propertyPath: m_TagString
@@ -2012,6 +2020,10 @@ PrefabInstance:
       value: Mug (8)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
       propertyPath: m_TagString
       value: item
       objectReference: {fileID: 0}
@@ -2108,6 +2120,10 @@ PrefabInstance:
       value: Mug (4)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
       propertyPath: m_TagString
       value: item
       objectReference: {fileID: 0}
@@ -2130,7 +2146,7 @@ GameObject:
   - component: {fileID: 758292547}
   - component: {fileID: 758292546}
   - component: {fileID: 758292545}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2227,7 +2243,7 @@ GameObject:
   - component: {fileID: 779583276}
   - component: {fileID: 779583275}
   - component: {fileID: 779583274}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2588,8 +2604,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 1550923053}
-  offset: {x: 4.4, y: 3.4, z: 0}
+  offset: {x: 0, y: 3.4, z: 0}
   smoothSpeed: 0.125
+  moveSpeed: {x: 5, y: 5}
+  moveStrong: {x: 5, y: 1}
+  angle: {x: 0, y: 0}
+  back: 0
 --- !u!1 &980424790
 GameObject:
   m_ObjectHideFlags: 0
@@ -3111,6 +3131,10 @@ PrefabInstance:
       value: Mug (5)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
       propertyPath: m_TagString
       value: item
       objectReference: {fileID: 0}
@@ -3244,7 +3268,7 @@ GameObject:
   - component: {fileID: 1454668528}
   - component: {fileID: 1454668527}
   - component: {fileID: 1454668526}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3549,6 +3573,7 @@ MonoBehaviour:
   jumpSpeed: 200
   wallspeed: 0.02
   speed: 3
+  cameraControl: {fileID: 963194229}
   platformMask:
     serializedVersion: 2
     m_Bits: 64
@@ -3557,6 +3582,7 @@ MonoBehaviour:
   feet: {fileID: 847588361}
   walkTrigger: 3
   items: []
+  itemDistance: 2
   runningOnWall: 0
 --- !u!4 &1572432972
 Transform:
@@ -3717,7 +3743,7 @@ GameObject:
   - component: {fileID: 1672044848}
   - component: {fileID: 1672044847}
   - component: {fileID: 1672044846}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3972,6 +3998,10 @@ PrefabInstance:
       value: Mug (2)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
       propertyPath: m_TagString
       value: item
       objectReference: {fileID: 0}
@@ -4086,6 +4116,10 @@ PrefabInstance:
       value: Mug (7)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
       propertyPath: m_TagString
       value: item
       objectReference: {fileID: 0}
@@ -4180,6 +4214,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
       propertyPath: m_Name
       value: Mug (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
       propertyPath: m_TagString
@@ -4459,6 +4497,10 @@ PrefabInstance:
       value: Mug (9)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
       propertyPath: m_TagString
       value: item
       objectReference: {fileID: 0}
@@ -4706,6 +4748,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
       propertyPath: m_Name
       value: Mug (6)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 46daadfafb924ee4593566e740df4855, type: 3}
       propertyPath: m_TagString

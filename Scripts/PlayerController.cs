@@ -13,12 +13,14 @@ public class PlayerController : MonoBehaviour
     public float speed = 5f;
 
 
+    public CameraController cameraControl;
     public LayerMask platformMask;
     public Transform center;
     public float checkRadius = .1f;
     public Collider feet;
     public float walkTrigger;
     public GameObject[] items;
+    public float itemDistance = 3f;
 
 
     private Rigidbody rig;
@@ -90,24 +92,13 @@ public class PlayerController : MonoBehaviour
                 anim.SetBool("Shift", false);
             }
             bool walking = false;
+            bool jumped = false;
             if (isOnGround())
             {
                 if (Input.GetKeyDown("space"))
                 {
-
                     rig.AddForce(new Vector3(0f, jumpSpeed, 0f));
-                }
-                if (Input.GetKey("a"))
-                {
-                    transform.RotateAround(center.position, Vector3.up, -(rotateSpeed * Time.deltaTime));
-                    //rig.AddTorque(new Vector3(0, -rotateSpeed, 0), ForceMode.VelocityChange);
-                    walking = true;
-                }
-                if (Input.GetKey("d"))
-                {
-                    transform.RotateAround(center.position, Vector3.up, rotateSpeed * Time.deltaTime);
-                    //rig.AddTorque(new Vector3(0, rotateSpeed, 0), ForceMode.VelocityChange);
-                    walking = true;
+                    jumped = true;
                 }
                 if (Input.GetKey("w"))
                 {
@@ -120,6 +111,24 @@ public class PlayerController : MonoBehaviour
                     walking = true;
                 }
             }
+            if (Input.GetKey("a"))
+            {
+                transform.RotateAround(center.position, Vector3.up, -(rotateSpeed * Time.deltaTime));
+                walking = true;
+            }
+            if (Input.GetKey("d"))
+            {
+                transform.RotateAround(center.position, Vector3.up, rotateSpeed * Time.deltaTime);
+                walking = true;
+            }
+
+            if (walking || jumped)
+            {
+                cameraControl.back = true;
+                cameraControl.angle.x = 0;
+                cameraControl.angle.y = 0;
+            }
+
             anim.SetBool("Walking", walking);
 
             if (transform.position.y < -5)
@@ -137,7 +146,7 @@ public class PlayerController : MonoBehaviour
                     if (i.activeSelf)
                     {
                         float d = Vector3.Distance(center.transform.position, i.transform.position);
-                        if (d < 5 && (ld > d || ld == -1))
+                        if (d < itemDistance && (ld > d || ld == -1))
                         {
                             ld = d;
                             li = i;
