@@ -1,5 +1,8 @@
 using TMPro;
 using UnityEngine;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -21,13 +24,16 @@ public class PlayerController : MonoBehaviour
     public float walkTrigger;
     public GameObject[] items;
     public float itemDistance = 3f;
+    public bool runningOnWall = false;
+    public TextMeshProUGUI inventoryText;
+    public List<ItemParams> inventory = new List<ItemParams>();
+
 
 
     private Rigidbody rig;
     private Animator anim;
     private Vector3 startPos;
     private Quaternion startRotate;
-    public bool runningOnWall = false;
     private WallControl wall = null;
     private float wallProgress = 0;
 
@@ -67,6 +73,25 @@ public class PlayerController : MonoBehaviour
         rig.velocity = new Vector3(0, 0, 0);
     }
 
+    public void reloadInventory()
+    {
+        Dictionary<string, int> dict = new Dictionary<string, int>();
+        foreach (ItemParams i in inventory)
+        {
+            if (dict.ContainsKey(i.Name)) dict[i.Name]++;
+            else dict.Add(i.Name, 1);
+        }
+        string text = "";
+        foreach (KeyValuePair<string, int> entry in dict)
+        {
+            if (entry.Value > 1)
+                text += entry.Key+" "+entry.Value+"x"+"\n";
+            else 
+                text += entry.Key+"\n";
+        }
+        inventoryText.text = text;
+    }
+
     void Update()
     {
         if (!runningOnWall)
@@ -95,34 +120,34 @@ public class PlayerController : MonoBehaviour
             bool jumped = false;
             if (isOnGround())
             {
-                if (Input.GetKeyDown("space"))
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
                     rig.AddForce(new Vector3(0f, jumpSpeed, 0f));
                     jumped = true;
                 }
-                if (Input.GetKey("w"))
+                if (Input.GetKey(KeyCode.W))
                 {
                     rig.velocity = transform.right * -speed;
                     walking = true;
                 }
-                if (Input.GetKey("s"))
+                if (Input.GetKey(KeyCode.S))
                 {
                     rig.velocity = transform.right * speed;
                     walking = true;
                 }
             }
-            if (Input.GetKey("a"))
+            if (Input.GetKey(KeyCode.A))
             {
                 transform.RotateAround(center.position, Vector3.up, -(rotateSpeed * Time.deltaTime));
                 walking = true;
             }
-            if (Input.GetKey("d"))
+            if (Input.GetKey(KeyCode.D))
             {
                 transform.RotateAround(center.position, Vector3.up, rotateSpeed * Time.deltaTime);
                 walking = true;
             }
 
-            if (walking || jumped)
+            if (walking || jumped)  
             {
                 cameraControl.back = true;
                 cameraControl.angle.x = 0;
@@ -137,7 +162,7 @@ public class PlayerController : MonoBehaviour
                 transform.rotation = startRotate;
             }
 
-            if (Input.GetKeyDown("f"))
+            if (Input.GetKeyDown(KeyCode.F))
             {
                 float ld = -1;
                 GameObject li = null;
@@ -154,9 +179,12 @@ public class PlayerController : MonoBehaviour
                     }
                 }
 
-                // moves to inventory
-                if (li != null) 
+                if (li != null)
+                {
                     li.SetActive(false);
+                    inventory.Add(li.GetComponent<ItemParams>());
+                    reloadInventory();
+                }
             }
         } else
         {

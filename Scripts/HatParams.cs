@@ -24,7 +24,7 @@ public class HatParams : MonoBehaviour
         {
             if (Vector3.Distance(target.position, transform.position) < distance)
             {
-                if (Input.GetKeyDown("f")) {
+                if (Input.GetKeyDown(KeyCode.F)) {
                     tip.SetActive(false);
                     transform.parent = target.transform;
                     picked = true;
