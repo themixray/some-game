@@ -12,7 +12,12 @@ public class InventoryControl : MonoBehaviour
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Tab))
+        {
             panel.SetActive(!panel.activeSelf);
+            if (!panel.activeSelf)
+                if (minipanel.activeSelf)
+                    minipanel.SetActive(false);
+        }
     }
 
     public bool HasLine(int line)
@@ -31,7 +36,7 @@ public class InventoryControl : MonoBehaviour
         return false;
     }
 
-    void ShowMiniPanel(int line)
+    public void ShowMiniPanel(int line)
     {
         if (HasLine(line))
             minipanel.SetActive(!minipanel.activeSelf);
