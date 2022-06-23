@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class HealthControl : MonoBehaviour
 {
@@ -62,9 +63,9 @@ public class HealthControl : MonoBehaviour
 
     void Update()
     {
-        /*if (Input.GetKey(KeyCode.G))
+        if (health <= 0)
         {
-            SetHealth(GetHealth() - 0.1f);
-        }*/
+            SceneManager.LoadScene("StartScene");
+        }
     }
 }
