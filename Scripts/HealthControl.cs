@@ -7,13 +7,13 @@ using UnityEngine.SceneManagement;
 public class HealthControl : MonoBehaviour
 {
     public Camera cam;
-    public Transform now;
-    public Transform max;
-    public Transform min;
-    public TextMeshPro[] texts;
+    public RectTransform now;
+    public RectTransform max;
+    public RectTransform min;
+    public TextMeshProUGUI[] texts;
 
     private float health = 100;
-    private float nowStartScaleZ = 2;
+    private float nowStartScaleX = 2;
 
     public void SetHealth(float hp)
     {
@@ -50,15 +50,15 @@ public class HealthControl : MonoBehaviour
     public void UpdateHealth()
     {
         now.position = Vector3.Lerp(min.position, max.position, health / 100);
-        now.localScale = new Vector3(now.localScale.x, now.localScale.y, nowStartScaleZ * (health / 100));
-        foreach (TextMeshPro text in texts) {
+        now.localScale = new Vector3(nowStartScaleX * (health / 100), now.localScale.y);
+        foreach (TextMeshProUGUI text in texts) {
             text.text = ((int)health) + "/100";
         }
     }
 
     void Start()
     {
-        nowStartScaleZ = now.localScale.z;
+        nowStartScaleX = now.localScale.x;
     }
 
     void Update()
