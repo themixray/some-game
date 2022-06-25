@@ -27,9 +27,6 @@ public class CameraController : MonoBehaviour
     {
         angle.x = 0;
         angle.y = 0;
-
-        transform.position = Vector3.Lerp(transform.position,
-                head.position + new Vector3(head.right.x * moveStrong.x, offset.y, head.right.z * moveStrong.x), smoothSpeed);
     }
 
 
@@ -56,8 +53,5 @@ public class CameraController : MonoBehaviour
             back = false;
         }
         else pressed = false;
-
-
-
     }
 }
