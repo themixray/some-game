@@ -3,14 +3,9 @@ using UnityEngine;
 
 public class vThirdPersonCamera : MonoBehaviour
 {
-    #region inspector properties    
-
     public Transform target;
-    [Tooltip("Lerp speed between Camera States")]
     public float smoothCameraRotation = 12f;
-    [Tooltip("What layer will be culled")]
     public LayerMask cullingLayer = 1 << 0;
-    [Tooltip("Debug purposes, lock the camera behind the character for better align the states")]
     public bool lockCamera;
 
     public float rightOffset = 0f;
@@ -20,21 +15,12 @@ public class vThirdPersonCamera : MonoBehaviour
     public float xMouseSensitivity = 3f;
     public float yMouseSensitivity = 3f;
     public float yMinLimit = -40f;
-    public float yMaxLimit = 80f;
+    public float yMaxLimit = 80f; 
 
-    #endregion
-
-    #region hide properties    
-
-    [HideInInspector]
     public int indexList, indexLookPoint;
-    [HideInInspector]
     public float offSetPlayerPivot;
-    [HideInInspector]
     public string currentStateName;
-    [HideInInspector]
     public Transform currentTarget;
-    [HideInInspector]
     public Vector2 movementSpeed;
 
     private Transform targetLookAt;
@@ -55,8 +41,6 @@ public class vThirdPersonCamera : MonoBehaviour
     private float xMaxLimit = 360f;
     private float cullingHeight = 0.2f;
     private float cullingMinDist = 0.1f;
-
-    #endregion
 
     void Start()
     {
