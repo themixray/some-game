@@ -3,14 +3,10 @@ using UnityEngine;
 
 public class vThirdPersonCamera : MonoBehaviour
 {
-    #region inspector properties    
 
     public Transform target;
-    [Tooltip("Lerp speed between Camera States")]
     public float smoothCameraRotation = 12f;
-    [Tooltip("What layer will be culled")]
     public LayerMask cullingLayer = 1 << 0;
-    [Tooltip("Debug purposes, lock the camera behind the character for better align the states")]
     public bool lockCamera;
 
     public float rightOffset = 0f;
@@ -22,9 +18,6 @@ public class vThirdPersonCamera : MonoBehaviour
     public float yMinLimit = -40f;
     public float yMaxLimit = 80f;
 
-    #endregion
-
-    #region hide properties    
 
     [HideInInspector]
     public int indexList, indexLookPoint;
@@ -56,7 +49,6 @@ public class vThirdPersonCamera : MonoBehaviour
     private float cullingHeight = 0.2f;
     private float cullingMinDist = 0.1f;
 
-    #endregion
 
     void Start()
     {
@@ -91,10 +83,6 @@ public class vThirdPersonCamera : MonoBehaviour
         CameraMovement();
     }
 
-    /// <summary>
-    /// Set the target for the camera
-    /// </summary>
-    /// <param name="New cursorObject"></param>
     public void SetTarget(Transform newTarget)
     {
         currentTarget = newTarget ? newTarget : target;
@@ -109,21 +97,11 @@ public class vThirdPersonCamera : MonoBehaviour
         Init();
     }
 
-    /// <summary>    
-    /// Convert a point in the screen in a Ray for the world
-    /// </summary>
-    /// <param name="Point"></param>
-    /// <returns></returns>
     public Ray ScreenPointToRay(Vector3 Point)
     {
         return this.GetComponent<Camera>().ScreenPointToRay(Point);
     }
 
-    /// <summary>
-    /// Camera Rotation behaviour
-    /// </summary>
-    /// <param name="x"></param>
-    /// <param name="y"></param>
     public void RotateCamera(float x, float y)
     {
         // free rotation 
@@ -144,9 +122,6 @@ public class vThirdPersonCamera : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Camera behaviour
-    /// </summary>    
     void CameraMovement()
     {
         if (currentTarget == null)
@@ -208,15 +183,6 @@ public class vThirdPersonCamera : MonoBehaviour
         movementSpeed = Vector2.zero;
     }
 
-    /// <summary>
-    /// Custom Raycast using NearClipPlanesPoints
-    /// </summary>
-    /// <param name="_to"></param>
-    /// <param name="from"></param>
-    /// <param name="hitInfo"></param>
-    /// <param name="distance"></param>
-    /// <param name="cullingLayer"></param>
-    /// <returns></returns>
     bool CullingRayCast(Vector3 from, ClipPlanePoints _to, out RaycastHit hitInfo, float distance, LayerMask cullingLayer, Color color)
     {
         bool value = false;

@@ -110,7 +110,8 @@ namespace Invector.vCharacterController
             var Y = Input.GetAxis(rotateCameraYInput);
             var X = Input.GetAxis(rotateCameraXInput);
 
-            tpCamera.RotateCamera(X, Y);
+            if (Input.GetMouseButton(0))
+                tpCamera.RotateCamera(X, Y);
         }
 
         protected virtual void StrafeInput()
