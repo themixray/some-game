@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public float jumpSpeed = 5f;
     public float wallspeed = 0.125f;
     public float speed = 5f;
-
+    public CameraController cameraControl;
     public LayerMask platformMask;
     public Transform center;
     public float checkRadius = .1f;
