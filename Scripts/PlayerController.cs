@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     public TextMeshProUGUI inventoryText;
     public List<ItemParams> inventory = new List<ItemParams>();
     public float wallspeed;
+    public HealthControl health;
 
 
     private Rigidbody rig;
@@ -31,7 +32,20 @@ public class PlayerController : MonoBehaviour
         items = GameObject.FindGameObjectsWithTag("item");
     }
 
-    // Update is called once per fram
+    public void Heal(float hp)
+    {
+        health.PlusHealth(hp);
+    }
+
+    public void UnDrink()
+    {
+        Drink(false);
+    }
+
+    public void Drink(bool v)
+    {
+        anim.SetBool("Drinking", v);
+    }
 
     public void runOnWall(WallControl w)
     {
