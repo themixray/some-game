@@ -17,7 +17,7 @@ public class BottleControl : MonoBehaviour
 
     void Update()
     {
-        if (picked == false)
+        if (!picked && !player.anim.GetBool("Drinking"))
         {
             if (Vector3.Distance(player.center.position, me.position) < distance)
             {

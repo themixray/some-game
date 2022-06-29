@@ -15,9 +15,8 @@ public class PlayerController : MonoBehaviour
     public float wallspeed;
     public HealthControl health;
 
-
+    [HideInInspector] public Animator anim;
     private Rigidbody rig;
-    private Animator anim;
     private Vector3 startPos;
     private Quaternion startRotate;
     private WallControl wall = null;
