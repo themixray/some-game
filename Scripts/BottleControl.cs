@@ -5,18 +5,19 @@ using UnityEngine;
 public class BottleControl : MonoBehaviour
 {
     public float distance;
-    public PlayerController player;
+    PlayerController player;
     public Transform me;
 
     private bool picked = false;
 
     void Start()
     {
-
+        player = FindObjectOfType<PlayerController>();
     }
 
     void Update()
     {
+        if(player != null)
         if (!picked && !player.anim.GetBool("Drinking"))
         {
             if (Vector3.Distance(player.center.position, me.position) < distance)

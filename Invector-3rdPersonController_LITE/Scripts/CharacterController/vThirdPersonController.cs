@@ -119,10 +119,10 @@ namespace Invector.vCharacterController
             isJumping = true;
 
             // trigger jump animations
-            if (input.sqrMagnitude < 0.1f)
-                animator.CrossFadeInFixedTime("Jump", 0.1f);
-            else
-                animator.CrossFadeInFixedTime("JumpMove", .2f);
+            //if (input.sqrMagnitude < 0.1f)
+            //    animator.CrossFadeInFixedTime("Jump", 0.1f);
+            //else
+            //    animator.CrossFadeInFixedTime("JumpMove", .2f);
         }
     }
 }
