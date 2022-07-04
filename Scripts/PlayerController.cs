@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public List<ItemParams> inventory = new List<ItemParams>();
     public float wallspeed;
     public HealthControl health;
+    public WeaponControl weapon;
 
     [HideInInspector] public Animator anim;
     private Rigidbody rig;
@@ -44,6 +45,11 @@ public class PlayerController : MonoBehaviour
     public void Drink(bool v)
     {
         anim.SetBool("Drinking", v);
+    }
+
+    public void Shot()
+    {
+        weapon.Shot();
     }
 
     public void runOnWall(WallControl w)

@@ -11,6 +11,7 @@ public class WeaponControl : MonoBehaviour
     public int count; //максимальное колво пулов
 
     public GameObject[] ar;  //массив клонов
+    public Animator anim;
 
     [SerializeField] GameObject prefab;
     void Start()
@@ -27,17 +28,22 @@ public class WeaponControl : MonoBehaviour
             i++;
         }
     }
+
+    public void Shot()
+    {
+        GameObject obj = parent.GetChild(ind).gameObject;
+        obj.SetActive(true);
+        obj.transform.position = gameObject.transform.position;
+        obj.transform.rotation = gameObject.transform.rotation;
+        ind++;
+        if (ind > parent.childCount - 1) ind = 0;
+        anim.SetBool("Shooting",false);
+    }
+
     // Update is called once per frame
     void Update()
     {
-            if (Input.GetMouseButtonDown(0))
-            {
-                GameObject obj = parent.GetChild(ind).gameObject;
-                obj.SetActive(true);
-                obj.transform.position = gameObject.transform.position;
-            obj.transform.rotation = gameObject.transform.rotation;
-                ind++;
-                if (ind > parent.childCount - 1) ind = 0;
-            }
+        if (Input.GetMouseButtonDown(0)) 
+            anim.SetBool("Shooting", true);
     }
 }
